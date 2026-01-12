@@ -14,47 +14,47 @@
 <section class="ma" aria-labelledby="about-heading">
   <h2 class="heading" id="about-heading" in:fly={{ y: 35, duration: 1500, delay: 100 }}>About</h2>
   <article class="gay-ma neumorphism" in:fly={{ y: 35, duration: 1500, delay: 300 }}>
-    <p style="text-align: justify;">
+    <p class="text-justify">
         At <a href="/">GreenNest</a>, we aren't just developers. We bridge the gap between urban necessity and environmental responsibility. We believe a home is more than a building; it is a sanctuary that respects both your modern lifestyle and the natural world around us, built with a commitment to <strong>pragmatic sustainability</strong>.
     </p>
 
-    <p style="text-align: justify;">
+    <p class="text-justify">
         Our approach is rooted in science: we don't just follow the laws; we design around the elements.
     </p>
 
-    <h2 style="margin-top: 20px; font-weight: normal;">
+    <h2 class="section-heading">
         Our Core Commitments
     </h2>
 
-    <ol style="list-style: none; padding-left: 0;">
-        <li style="margin-bottom: 25px;">
-            <h3 style="margin: 0 0 5px 0; color: #222;">
+    <ol class="commitments-list">
+        <li class="commitment-item">
+            <h3 class="commitment-title">
                 1. Evidence-Based Design
             </h3>
-            <p style="margin: 0; text-align: justify;">
+            <p class="text-justify">
                 We orient our homes to maximize the cool North breeze while shielding living areas from the harsh afternoon West sun. This ensures every GreenNest home is energy-efficient by design, reducing your reliance on artificial cooling and lowering long-term costs.
             </p>
         </li>
         
-        <li style="margin-bottom: 25px;">
-            <h3 style="margin: 0 0 5px 0; color: #222;">
+        <li class="commitment-item">
+            <h3 class="commitment-title">
                 2. Uncompromising Safety & Privacy
             </h3>
-            <p style="margin: 0; text-align: justify;">
+            <p class="text-justify">
                 Your peace of mind is our priority. By strictly adhering to Ministerial Regulation No. 55, we ensure 30% of your land remains as open green space. Our precise setbacks provide fire safety and physical privacy, ensuring a secure, family-friendly environment.
             </p>
         </li>
 
-        <li style="margin-bottom: 25px;">
-            <h3 style="margin: 0 0 5px 0; color: #222;">
+        <li class="commitment-item">
+            <h3 class="commitment-title">
                 3. Sustainable Skill Development
             </h3>
-            <p style="margin: 0; text-align: justify;">
+            <p class="text-justify">
                 Choosing GreenNest means investing in a team dedicated to growth. We continue to develop our expertise in sustainable construction management to ensure we don't just meet industry standards, but exceed them—transforming blueprints into breathable living spaces.
             </p>
         </li>
     </ol>
-    <p style="font-size: 0.9em; text-align: center; color: #555;">
+    <p class="contact-info">
         Inquiries regarding our upcoming projects should be directed to <strong><a href="mailto:sales@notma.org">sales@notma.org</a></strong>.
     </p>
   </article>
@@ -102,14 +102,45 @@
         margin: 24px auto;
         border-radius: 16px;
         background: var(--fourth-color-brighter);
-        font-size: 1.25rem;
+        font-size: 1.5rem;
         line-height: 1.6;
+    }
+
+    .text-justify {
+        text-align: justify;
+        margin: 0;
+    }
+
+    .section-heading {
+        margin-top: 20px;
+        font-size: 3rem;
+        font-weight: normal;
+    }
+
+    .commitments-list {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .commitment-item {
+        margin-bottom: 25px;
+    }
+
+    .commitment-title {
+        margin: 0 0 5px 0;
+        color: #222;
+    }
+
+    .contact-info {
+        font-size: 0.9em;
+        text-align: center;
+        color: #555;
     }
 
     .gay-ma-stuff-item-small {
         position: relative;
         width: 80%;
-        height: fit-content; /* 589px */
+        height: fit-content;
         break-inside: avoid;
         padding: 24px;
         margin: 24px auto;
