@@ -520,7 +520,7 @@
 		}
 
 		:global(p.caption) {
-			margin-bottom: 84px;
+			margin-bottom: 168px !important;
 			padding: 0 8px !important;
 		}
 
@@ -534,7 +534,8 @@
 			animation: revealImage 2000ms ease-in 0s;
 		}
 
-		@media (width < 1216px) {
+		/* temporal fix; it's ma stuff */
+		@media (width < 12160px) {
 
 			:global(.ma-stuff-grid) {
 				justify-content: center;
@@ -543,7 +544,6 @@
 
 			:global(.ma-stuff-item) {
 				width: 77dvw;
-				/* height: calc(198px + 38dvw); */
 				height: fit-content;
 				display: block;
 			}
@@ -571,6 +571,7 @@
     			gap: clamp(8px, 12px, 24px);
 			}
 		}
+		
 
 		@media (width > 768px) and (width < 1216px) {
 			:global(p.caption) {
@@ -593,7 +594,7 @@
 		:global(.ma-stuff-item-small) {
 			position: relative;
 			width: 664px;
-			height: fit-content; /* 589px */
+			height: fit-content;
         	break-inside: avoid;
 			margin: auto;
 			background: var(--fourth-color-brighter);
@@ -601,7 +602,6 @@
 			transition: all 300ms ease;
 			display: flex;
     		gap: 8px;
-			/* animation: neumorphism 3000ms cubic-bezier(0.2, 0, 0.8, 1) forwards; */
         }
 
 		:global(.ma-stuff-item-small:hover) {

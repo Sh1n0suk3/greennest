@@ -4,7 +4,7 @@
     import { onMount } from 'svelte';
     
 	let { name, description, src, alt, price, href } = $props();
-	
+	/*
 	let screenWidth = $state(0);
 	
 	onMount(() => {
@@ -20,6 +20,7 @@
 			window.removeEventListener('resize', handleResize);
 		};
 	});
+    */
 </script>
 
 <div class="ma-stuff-item neumorphism">
@@ -30,13 +31,8 @@
     </div>
 	<p class="caption"><em>{description}</em></p>
     <div class="button-container">
-        {#if screenWidth < 1216}
             <ViewButtonFull text="View Details" {href} />
             <ViewButtonFull text="Contact Sales" href="/vid/rr.mp4" />
-        {:else}
-            <ViewButton text="View Details" {href} />
-            <ViewButton text="Contact Sales" href="/vid/rr.mp4" />
-        {/if}
     </div>
 </div>
 
