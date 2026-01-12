@@ -43,14 +43,16 @@
     <div class="fs-content-right">
         <hgroup>
             <AOS animate="fade-up" ease="ease-out-cubic" delay={0} duration={1250} distance="35px">
-                <h1 id="hero-heading">Close to the City</h1>
+                <h1 id="hero-heading">Close to the City,</h1>
             </AOS>
             <AOS animate="fade-up" ease="ease-out-cubic" delay={150} duration={1250} distance="35px">
                 <h1>Closer to Nature</h1>
             </AOS>
             <AOS animate="fade-up" ease="ease-out-cubic" delay={300} duration={1250} distance="35px">
-                <ViewButtonBorder text="Properties" href="/#properties" />
-                <ViewButtonBorder text="Features" href="/#features" />
+                <div class="hero-buttons">
+                    <ViewButtonBorder text="Properties" href="/#properties" />
+                    <ViewButtonBorder text="Features" href="/#features" />
+                </div>
             </AOS>   
         </hgroup>
     </div>

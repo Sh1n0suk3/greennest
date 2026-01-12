@@ -56,9 +56,7 @@
     let otherImage = $derived(imageList.filter(img => img !== currentImage)); 
 
     let properties = $state([ 
-        { ...consts.ec1, visible: false, id: consts.ec1.property }, 
-        { ...consts.ec2, visible: false, id: consts.ec2.property },
-        { ...consts.ec3, visible: false, id: consts.ec3.property }
+        { ...consts.ec1, visible: false, id: consts.ec1.property }
     ]);
     let otherProperties = $derived.by(() => {
         if (!data?.property) return []; 
@@ -123,6 +121,7 @@
         <p>{@html data.property.information}</p>
     </article>
     </AOS>
+    <!--
     <aside aria-labelledby="related-heading">
         <AOS animate="fade-up" ease="ease-out-cubic" delay={100} duration={1250} distance="35px">
         <h2 id="property-heading">You May Also Like</h2>
@@ -145,6 +144,7 @@
             {/each}
         </div>
     </aside>
+    -->
 </section>
 {/if}
 
@@ -367,7 +367,7 @@
         }
     }
 
-    @media (width < 1392px) {
+    @media (width < 1441px) {
         .estate-content {
             flex-direction: column-reverse;
             width: 85%;

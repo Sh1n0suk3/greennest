@@ -341,13 +341,27 @@
 
 	@media (width < 1112px) {
 		:global(.fs-content-right) {
-			font-size: 3rem;
+			font-size: 2.5rem;
 		}
 	}
 
 	@media (width < 768px) {
 		:global(.fs-content-right) {
-			font-size: 2.75rem;
+			font-size: 2rem;
+		}
+
+		:global(.fs-content-right .hero-buttons) {
+			margin-top: 64px;
+		}
+	}
+
+	@media (width < 576px) {
+		:global(.fs-content-right) {
+			font-size: 1.75rem;
+		}
+
+		:global(.fs-content-right .hero-buttons) {
+			margin-top: 84px;
 		}
 	}
 

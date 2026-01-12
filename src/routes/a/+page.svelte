@@ -15,11 +15,11 @@
   <h2 class="heading" id="about-heading" in:fly={{ y: 35, duration: 1500, delay: 100 }}>About</h2>
   <article class="gay-ma neumorphism" in:fly={{ y: 35, duration: 1500, delay: 300 }}>
     <p style="text-align: justify;">
-        At <a href="/">Ma Estate</a>, we aren't just developers. We create a new way of living. We believe a home is more than a building; it is an involuntary, life-altering event. Our mission is to provide a unique living experience, which our partners have officially called a <strong>Certified Ma Moment™</strong> after some very Ma analysis.
+        At <a href="/">GreenNest</a>, we aren't just developers. We bridge the gap between urban necessity and environmental responsibility. We believe a home is more than a building; it is a sanctuary that respects both your modern lifestyle and the natural world around us, built with a commitment to <strong>pragmatic sustainability</strong>.
     </p>
 
     <p style="text-align: justify;">
-        We don't just build homes. We construct an elaborate, complex Ma thing.
+        Our approach is rooted in science: we don't just follow the laws; we design around the elements.
     </p>
 
     <h2 style="margin-top: 20px; font-weight: normal;">
@@ -29,36 +29,36 @@
     <ol style="list-style: none; padding-left: 0;">
         <li style="margin-bottom: 25px;">
             <h3 style="margin: 0 0 5px 0; color: #222;">
-                1. Uncompromising Architectural Vision
+                1. Evidence-Based Design
             </h3>
             <p style="margin: 0; text-align: justify;">
-                Our properties all look exactly the same, on purpose. We follow a design philosophy where no one would even dare to live. Our main 'Just Ma' house design proudly received the "Worst House Design Ever" award, an honor we consider our greatest success.
+                We orient our homes to maximize the cool North breeze while shielding living areas from the harsh afternoon West sun. This ensures every GreenNest home is energy-efficient by design, reducing your reliance on artificial cooling and lowering long-term costs.
             </p>
         </li>
         
         <li style="margin-bottom: 25px;">
             <h3 style="margin: 0 0 5px 0; color: #222;">
-                2. Our Unique Security System
+                2. Uncompromising Safety & Privacy
             </h3>
             <p style="margin: 0; text-align: justify;">
-                Your safety is our top priority. Our exclusive partner, Adidas Ma, provides security around the clock. If someone breaks in, our team will... <em>relocate</em>... them to the master bedroom for final processing. (Please do not call at 3 AM; the protocol is complex).
+                Your peace of mind is our priority. By strictly adhering to Ministerial Regulation No. 55, we ensure 30% of your land remains as open green space. Our precise setbacks provide fire safety and physical privacy, ensuring a secure, family-friendly environment.
             </p>
         </li>
 
         <li style="margin-bottom: 25px;">
             <h3 style="margin: 0 0 5px 0; color: #222;">
-                3. Special Community Events
+                3. Sustainable Skill Development
             </h3>
             <p style="margin: 0; text-align: justify;">
-                Buying a Ma Estate property automatically makes you part of our exclusive lifestyle program, which includes free Singha Drinking Water (now with Purra minerals). We organize many unique <strong>gay Ma</strong> community-building activities (such as loud gang-bang bathroom shit), all designed to be <strong>ABSOLUTELY</strong> wild. Certification is only granted if you survive.
+                Choosing GreenNest means investing in a team dedicated to growth. We continue to develop our expertise in sustainable construction management to ensure we don't just meet industry standards, but exceed them—transforming blueprints into breathable living spaces.
             </p>
         </li>
     </ol>
     <p style="font-size: 0.9em; text-align: center; color: #555;">
-        All formal complaints should be directed to <strong><a href="mailto:me@notma.org">me@notma.org</a></strong>.
+        Inquiries regarding our upcoming projects should be directed to <strong><a href="mailto:sales@notma.org">sales@notma.org</a></strong>.
     </p>
   </article>
-  <AOS animate="fade-up" ease="ease-out-cubic" delay={100} duration={1250} distance="35px">
+ <AOS animate="fade-up" ease="ease-out-cubic" delay={100} duration={1250} distance="35px">
   <figure class="gay-ma-stuff-item-small neumorphism">
     <img loading="lazy" class="gay-responsive-media-small" alt="Ma, the developer" src="/img/ma.webp">
     <figcaption>
@@ -76,6 +76,7 @@
     </figcaption>
   </figure>
   </AOS>
+
 
 </section>
 {/if}
