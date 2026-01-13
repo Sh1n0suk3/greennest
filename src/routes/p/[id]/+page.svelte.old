@@ -5,7 +5,7 @@
 
     import { AOS } from 'svelte-animate-on-scroll';
 
-    // import EstateCard from '../../EstateCardSmall.svelte';
+    import EstateCard from '../../EstateCardSmall.svelte';
     import ViewButton from '../../ViewButtonFull.svelte';
 
     import * as consts from '$lib/constants';
@@ -17,11 +17,12 @@
     let borderDebug = $state(true);
 
     let currentImage = $state(data.property.src);
-    let previousImage = $state("");
+    let previousImage = $state(undefined);
     let intervalId = 0;
 
     $effect(() => { 
         currentImage = data.property.src;
+        previousImage = undefined;
 
         intervalId = setInterval(() => {
             const availableImage = imageList.filter((img) => img !== previousImage);
@@ -37,6 +38,7 @@
     function selectImage(img, clearTimer = true) {
         if (intervalId && clearTimer) {
             clearInterval(intervalId);
+            intervalId = null;
         }
         previousImage = currentImage;
         currentImage = img;
@@ -51,29 +53,27 @@
             '/img/ecosmarta_improved2.webp'
         ].filter((src, index, self) => src && self.indexOf(src) === index)
     );
-    // let otherImage = $derived(imageList.filter(img => img !== currentImage)); 
+    let otherImage = $derived(imageList.filter(img => img !== currentImage)); 
 
     let properties = $state([ 
         { ...consts.ec1, visible: false, id: consts.ec1.property }
     ]);
-    /*
     let otherProperties = $derived.by(() => {
         if (!data?.property) return []; 
         return properties.filter(prop => prop.property !== data.property.property); 
     });
-    */
-    // let propertiesVisible = $state(false); 
+    let propertiesVisible = $state(false); 
 
     let isLoaded = $state(false); 
     onMount(() => {
         isLoaded = true;
     });
 
-    // let floatingPurchaseButtonVisible = false;
+    let floatingPurchaseButtonVisible = false;
 </script>
 
 {#if isLoaded}
-<section class="estate-page" aria-labelledby="property-heading">
+<section class="estate-page" aria-labelledby="property-heading" >
     <h2 id="property-heading" in:fly={{ y: 35, duration: 1250, delay: 100 }}>Property Details</h2>
     <article class="estate-content">
         <div class="estate-content-left neumorphism" in:fly={{ y: 35, duration: 1250, delay: 200}} role="region" aria-label="Property image gallery">
@@ -84,9 +84,9 @@
                     {/key}
                 </div>
                 <div class="small-media-container">
-                    {#each imageList as img, i}
+                    {#each otherImage as img, i}
                         {#key img}
-                            <img class="small-media small-media-{i + 1}" src={img} alt="Thumbnail view" onclick={() => selectImage(img)} class:selected-media={currentImage === img}/>
+                            <img role="button" class="small-media small-media-{i + 1}" src={img} alt="Thumbnail view" onclick={() => selectImage(img)} transition:fade={{ duration: 300 }}/>
                         {/key}
                     {/each}
                 </div>
@@ -94,9 +94,8 @@
         </div>
         <div class="estate-content-right neumorphism" in:fly={{ y: 35, duration: 1250, delay: 400}}>
             <div class="estate-content-right-text">
-                <h3 style="line-height: 1.2">{data.property.name}</h3>
+                <h3>{data.property.name}</h3>
                 <p>{data.property.description}</p>
-                
                 <div class="property-features">
                     <p>Includes</p>
                     <ul>
@@ -108,7 +107,6 @@
                         <li>{data.property.features4}</li>
                     </ul>
                 </div>
-                
                 <p class="property-price">Price: {data.property.price}</p>
             </div>
             <div class="button-container">
@@ -184,7 +182,7 @@
     }
 
     .estate-content-left {
-        width: 70%;
+        width: 60%;
         padding: 0 16px;
         display: flex;
         flex-direction: column;
@@ -197,7 +195,7 @@
 
     .estate-content-right {
         position: relative;
-        width: 30%;
+        width: 40%;
         padding: 0 0 168px;
         display: flex;
         flex-direction: column;
@@ -229,7 +227,7 @@
         width: fit-content;
         line-height: 1.4;
         margin-bottom: 16px;
-        font-size: 1.25rem;
+        font-size: 1.5rem;
     }
 
     .property-features ul {
@@ -299,23 +297,32 @@
         width: 100%;
         max-width: 100%;
         height: 30%;
-        display: flex;
-        gap: 8px;
+        position: relative;
+        display: block;
         margin-top: 16px;
+        padding-bottom: 18%; /* Creates space for the thumbnails */
     }
 
     .small-media {
-        width: 24.2%;
+        position: absolute;
+        width: 32%;
         height: 100%;
         border-radius: 16px;
         cursor: pointer;
+        transition: transform 300ms ease;
         bottom: 0;
     }
 
-    .selected-media {
-        width: calc(24.2% - 8px);
-        height: calc(100% - 8px);
-        border: 4px solid var(--primary-color);
+    .small-media-1 {
+        left: 0;
+    }
+
+    .small-media-2 {
+        left: 34%;
+    }
+
+    .small-media-3 {
+        right: 0;
     }
 
     /*
@@ -357,10 +364,6 @@
         .mamm-stuff-grid {
             flex-direction: column;
             align-items: stretch;
-        }
-
-        .property-features {
-            font-size: 1.5rem;
         }
     }
 
