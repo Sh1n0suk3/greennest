@@ -64,7 +64,7 @@
                 <h2 id="properties-heading">Find your home</h2>
             </AOS>
             <AOS animate="fade-up" ease="ease-out-cubic" delay={250} duration={1250} distance="35px">
-                <p class="content-details">The houses that looked exactly the same and no one would even dare living in.</p>
+                <p class="content-details">Join us in a place that is close to the city — but closer to nature. A home may be built with walls, but at GreenNest, it is built with care</p>
             </AOS>
         </header>
         <div class="ma-stuff-grid" role="list">

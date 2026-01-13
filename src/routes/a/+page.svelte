@@ -161,7 +161,7 @@
     }
 
     .super-gay-ma-stuff-item-small figcaption h3 {
-        margin-top: 16px;
+        margin-top: 24px;
     }
 
     .gay-responsive-media-small {

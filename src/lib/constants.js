@@ -3,7 +3,8 @@ export const name = "GreenNest";
 export const ec1 = {
   property: "organic",
   name: "GreenNest Organic",
-  description: "A pragmatic sanctuary built for comfort, safety, and efficiency.",
+  description:
+    "A pragmatic sanctuary built for comfort, safety, and efficiency.",
   information: `
             <p>GreenNest is designed to work in harmony with the local climate of Bang Khun Thian. By analyzing sun and wind patterns, we have created a home that stays naturally cool, significantly reducing the need for artificial cooling and lowering long-term energy costs.</p>
             <p>Safety and privacy are integrated into the architecture. We strictly adhere to Ministerial Regulation No. 55, maintaining precise setbacks and ensuring that 30% of the land remains as open green space to allow for proper drainage and air circulation.</p>
