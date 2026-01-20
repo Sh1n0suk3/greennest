@@ -1,6 +1,6 @@
 <script>
     import { fly } from 'svelte/transition';
-    import { fade } from 'svelte/transition';
+    import { fade, slide } from 'svelte/transition';
     import { onMount } from 'svelte';
 
     import { AOS } from 'svelte-animate-on-scroll';
@@ -80,7 +80,7 @@
             <div class="image-container">
                 <div class="full-media-container">
                     {#key currentImage}
-                        <img class="full-media" id="fullImage" src={currentImage} alt={data.property.alt} transition:fade={{ duration: 300 }}/>
+                        <img class="full-media" id="fullImage" src={currentImage} alt={data.property.alt} transition:fade={{ duration: 250 }}/>
                     {/key}
                 </div>
                 <div class="small-media-container">
@@ -167,7 +167,7 @@
 
     #property-heading {
         position: relative;
-        width: 80%;
+        width: 85%;
         font-size: 4rem;
         padding: 0 24px;
         margin: 64px auto 0;
@@ -175,7 +175,7 @@
 
     .estate-content {
         padding-top: 24px;
-        width: 80%;
+        width: 85%;
         display: flex;
         flex-direction: row;
         height: fit-content;
@@ -325,7 +325,7 @@
     */
 
     .estate-content-information {
-        width: calc(80% - 4px);
+        width: calc(85% - 4px);
         margin: 42px auto;
         padding: 0;
         font-size: 1.5rem;
@@ -353,18 +353,18 @@
         width: 80%;
     }
 
-    @media (width < 1528px) {
+    @media (width < 1440px) {
         .mamm-stuff-grid {
             flex-direction: column;
             align-items: stretch;
         }
 
         .property-features {
-            font-size: 1.5rem;
+            font-size: 1rem;
         }
     }
 
-    @media (width < 1441px) {
+    @media (width < 1232px) {
         .estate-content {
             flex-direction: column-reverse;
             width: 85%;
@@ -387,6 +387,7 @@
 
         .property-features {
             width: calc(82dvw - 84px);
+            font-size: 1.25rem;
         }
 
         .property-features ul {

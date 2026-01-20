@@ -93,11 +93,11 @@
         font-size: 4rem;
         padding: 0 24px;
         margin: 64px auto 32px;
-        width: 80%;
+        width: 85%;
     }
 
     .gay-ma {
-        width: 80%;
+        width: 85%;
         padding: 12px 24px;
         margin: 24px auto;
         border-radius: 16px;
@@ -139,7 +139,7 @@
 
     .gay-ma-stuff-item-small {
         position: relative;
-        width: 80%;
+        width: 85%;
         height: fit-content;
         break-inside: avoid;
         padding: 24px;

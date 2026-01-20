@@ -42,13 +42,13 @@
     <img src="img/ecosmarta_cinematic_composited.webp" alt="a house" class="bg-image"/>
     <div class="fs-content-right">
         <hgroup>
-            <AOS animate="fade-up" ease="ease-out-cubic" delay={0} duration={1250} distance="35px">
+            <AOS animate="fade-up" ease="ease-out-cubic" delay={50} duration={1000} distance="30px">
                 <h1 id="hero-heading">Close to the City,</h1>
             </AOS>
-            <AOS animate="fade-up" ease="ease-out-cubic" delay={150} duration={1250} distance="35px">
+            <AOS animate="fade-up" ease="ease-out-cubic" delay={150} duration={1000} distance="30px">
                 <h1>Closer to Nature</h1>
             </AOS>
-            <AOS animate="fade-up" ease="ease-out-cubic" delay={300} duration={1250} distance="35px">
+            <AOS animate="fade-up" ease="ease-out-cubic" delay={250} duration={1000} distance="30px">
                 <div class="hero-buttons">
                     <ViewButtonBorder text="Properties" href="/#properties" />
                     <ViewButtonBorder text="Features" href="/#features" />
@@ -60,16 +60,16 @@
 <section class="second-section" aria-labelledby="properties-heading">
     <div class="ss-content" id="properties">
         <header>
-            <AOS animate="fade-up" ease="ease-out-cubic" delay={100} duration={1250} distance="35px" onupdate={(visible) => { features1Visible = true }}>
+            <AOS animate="fade-up" ease="ease-out-cubic" delay={100} duration={1000} distance="30px" onupdate={(visible) => { features1Visible = true }}>
                 <h2 id="properties-heading">Find your home</h2>
             </AOS>
-            <AOS animate="fade-up" ease="ease-out-cubic" delay={250} duration={1250} distance="35px">
+            <AOS animate="fade-up" ease="ease-out-cubic" delay={200} duration={1000} distance="30px">
                 <p class="content-details">Join us in a place that is close to the city — but closer to nature. A home may be built with walls, but at GreenNest, it is built with care</p>
             </AOS>
         </header>
         <div class="ma-stuff-grid" role="list">
             {#each properties as property, i (property.name)}
-    				<AOS animate="fade-up" ease="ease-out-cubic" delay={50 + i * 50} duration={1250} distance="35px"><EstateCard {...property} href={`/p/${property.property}`} /></AOS>
+    				<AOS animate="fade-up" ease="ease-out-cubic" delay={50 + i * 50} duration={1000} distance="30px"><EstateCard {...property} href={`/p/${property.property}`} /></AOS>
             {/each}
         </div>
     </div>
@@ -77,16 +77,16 @@
 <section class="third-section" aria-labelledby="features-heading">
     <div class="ts-content" id="features">
         <header>
-            <AOS animate="fade-up" ease="ease-out-cubic" delay={100} duration={1250} distance="35px" onupdate={(visible) => { features2Visible = true }}>
+            <AOS animate="fade-up" ease="ease-out-cubic" delay={100} duration={1000} distance="30px" onupdate={(visible) => { features2Visible = true }}>
                 <h2 id="features-heading">Why GreenNest?</h2>
             </AOS>
-            <AOS animate="fade-up" ease="ease-out-cubic" delay={250} duration={1250} distance="35px">
+            <AOS animate="fade-up" ease="ease-out-cubic" delay={200} duration={1000} distance="30px">
                 <p class="content-details">We are committed to building pragmatic houses with sustainability and safety in mind, bridging the gap between urban necessity and environmental responsibility.</p>
             </AOS>
         </header>
         <div class="ts-content-grid" role="list">
             {#each features as feature, i (feature.name)}
-    	    		<AOS animate="fade-up" ease="ease-out-cubic" delay={50 + i * 50} duration={1250} distance="35px"><FeatureCardSmall {...feature} /></AOS>
+    	    		<AOS animate="fade-up" ease="ease-out-cubic" delay={50 + i * 25} duration={1000} distance="30px"><FeatureCardSmall {...feature} /></AOS>
             {/each}
         </div>
     </div>

@@ -236,7 +236,7 @@
 
 		--primary-color: rgb(67, 35, 35);
 		--primary-color-transparent: rgba(67, 35, 35, 0.4);
-		--primary-color-transparent-light: rgba(67, 35, 35, 0.075);
+		--primary-color-transparent-light: rgba(67, 35, 35, 0.05);
 
 
 		--secondary-color: rgb(47, 87, 85);
@@ -247,7 +247,7 @@
 		--fourth-color: rgb(224, 217, 217);
 		--fourth-color-transparent: rgba(224, 217, 217, 0.6);
 		--fourth-color-darker: rgb(219, 212, 212);
-		--fourth-color-brighter: rgb(229, 222, 222);
+		--fourth-color-brighter: rgb(234, 227, 227);
 
 		--fifth-color: rgb(35, 76, 106);
 
@@ -538,7 +538,7 @@
 	:global(.ss-content) {
 		color: inherit;
 		margin: 0 auto;
-		width: 90%;
+		width: 95%;
 	}
 
 	:global(.ss-content h2) {
@@ -571,7 +571,7 @@
 		width: 36dvw;
 		/* height: calc(389px + 12dvw); */
 		height: fit-content;
-		min-height: 36dvw;
+		min-height: 32dvw;
         break-inside: avoid;
         padding: 24px;
 		background: var(--fourth-color-brighter);
@@ -584,7 +584,7 @@
 	} */
 	
 	:global(.neumorphism) {
-		box-shadow: -8px -8px 24px 0px rgba(255, 255, 255, 0.5), 8px 8px 24px 0px rgba(0, 0, 0, 0.10);
+		box-shadow: -8px -8px 16px 0px rgba(255, 255, 255, 0.45), 8px 8px 16px 0px rgba(0, 0, 0, 0.075);
 		border: 2px solid var(--primary-color-transparent-light);
 	}
 
@@ -630,7 +630,8 @@
 		}
 
 		:global(p.caption) {
-			margin-bottom: 168px !important;
+			/* clamp(128px, calc(192px - 6dvw), 168px) */
+			margin-bottom: 96px !important;
 			padding: 0 8px !important;
 		}
 
@@ -645,7 +646,7 @@
 		}
 
 		/* temporal fix; it's ma stuff */
-		@media (width < 12160px) {
+		@media (width < 1216px) {
 
 			:global(.ma-stuff-grid) {
 				justify-content: center;
@@ -816,7 +817,7 @@
 		height: fit-content;
 		color: inherit;
 		margin: 0 auto;
-		width: 90%;
+		width: 95%;
 	}
 
 	
@@ -853,7 +854,7 @@
 
 	:global(.ma-stuff-item-small-feature) {
 		position: relative;
-		width: clamp(406px, 36dvw, 36dvw);
+		width: clamp(406px, 39dvw, 39dvw);
 		height: calc(512px - 16dvw); /* 589px 289px */
         break-inside: avoid;
         padding: 24px;
