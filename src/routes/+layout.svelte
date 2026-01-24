@@ -1,25 +1,25 @@
 <script>
 	import { name } from '$lib/constants';
-	import { onMount } from 'svelte';
+	// import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
-
+	import { screenWidth } from '$lib/screenWidth.js';
 	let { children } = $props();
-
+	/*
 	let screenWidth = $state(0);
-	
-	onMount(() => {
-		screenWidth = window.innerWidth;
-		
-		const handleResize = () => {
-			screenWidth = window.innerWidth;
-		};
-		
-		window.addEventListener('resize', handleResize);
-		
-		return () => {
-			window.removeEventListener('resize', handleResize);
-		};
-	});
+	$effect(() => {
+    	screenWidth = window.innerWidth;
+    
+    	const handleResize = () => {
+    	    screenWidth = window.innerWidth;
+    	};
+    
+    	window.addEventListener('resize', handleResize);
+    
+    	return () => {
+    	    window.removeEventListener('resize', handleResize);
+    	};
+});
+*/
 
 	let mobileNavVisible = $state(false);
 
@@ -37,10 +37,10 @@
 	<nav class="navbar" aria-label="Main navigation">
 		<a href="/" class="logo">{name}</a>
 		<div class="navbar-menu-container">
-			{#if screenWidth <= 768}
+			{#if $screenWidth <= 768}
 				<button onclick={() => mobileNavVisible = !mobileNavVisible} class="navbar-menu" aria-label="Toggle navigation menu"><img src="/svg/menu.svg" alt="Menu icon"></button>
 			{/if}
-			{#if mobileNavVisible || screenWidth > 768}
+			{#if mobileNavVisible || $screenWidth > 768}
 				<ul class="navbar-links" transition:slide={{ duration: 200, axis: 'y' }}>
 					<li><a class="navbar-right" href="/#properties" onclick={handleNavClick}>Properties</a></li>
 					<li><a class="navbar-right" href="/#features" onclick={handleNavClick}>Features</a></li>
@@ -334,8 +334,8 @@
 		}
 
 		header.screen-navbar-visible {
-			border-bottom-left-radius: 32px;
-			border-bottom-right-radius: 32px;
+			border-bottom-left-radius: 14px;
+			border-bottom-right-radius: 14px;
 		}
 
 		.navbar {
@@ -399,7 +399,7 @@
 		margin: 0 auto;
 	}
 
-	footer {
+	:global(footer) {
 		text-align: center;
 		padding: 2rem;
 		background-color: var(--secondary-color);
@@ -468,6 +468,25 @@
 	@media (width < 576px) {
 		:global(.fs-content-right) {
 			font-size: 1.75rem;
+		}
+
+		:global(.fs-content-right .hero-buttons) {
+			margin-top: 84px;
+		}
+
+		:global(.first-section::before) {
+		background: linear-gradient(0deg, 
+     		rgba(0, 0, 0, 0) 0%, 
+			rgba(67, 35, 35, 0) 42%, 
+    		rgba(67, 35, 35, 0.6) 65%, 
+    	    rgba(67, 35, 35, 0.8) 100%
+    	);
+		}
+	}
+
+	@media (width < 480px) {
+		:global(.fs-content-right) {
+			font-size: 1.45rem;
 		}
 
 		:global(.fs-content-right .hero-buttons) {
@@ -573,7 +592,8 @@
 		height: fit-content;
 		min-height: 32dvw;
         break-inside: avoid;
-        padding: 24px;
+        /* padding: 24px; */
+		padding: 20px;
 		background: var(--fourth-color-brighter);
         border-radius: 16px;
     }
@@ -587,12 +607,6 @@
 		box-shadow: -8px -8px 16px 0px rgba(255, 255, 255, 0.45), 8px 8px 16px 0px rgba(0, 0, 0, 0.075);
 		border: 2px solid var(--primary-color-transparent-light);
 	}
-
-	/*
-	:global(.ma-stuff-item .view-button) {
-		bottom: 24px;
-	}
-	*/
 
 	:global(.ma-stuff-item .button-container) {
     	position: absolute;
@@ -626,12 +640,15 @@
 
 		:global(h3.caption) { 
 			font-size: 2.25rem !important;
-			padding: 0 8px;
+			text-wrap: wrap !important;
+			text-align: start;
+			line-height: 1;
+			padding: 0 8px 8px;
 		}
 
 		:global(p.caption) {
 			/* clamp(128px, calc(192px - 6dvw), 168px) */
-			margin-bottom: 96px !important;
+			margin-bottom: 96px;
 			padding: 0 8px !important;
 		}
 
@@ -641,11 +658,10 @@
 			object-fit: cover;
 			display: block;
 			margin: 0 auto;
-			border-radius: 16px;
+			border-radius: 14px;
 			animation: revealImage 2000ms ease-in 0s;
 		}
 
-		/* temporal fix; it's ma stuff */
 		@media (width < 1216px) {
 
 			:global(.ma-stuff-grid) {
@@ -848,7 +864,7 @@
 		flex-wrap: wrap;
 		justify-content: center;
 		align-items: center;
-		gap: 1.75dvw;
+		gap: 24px;
 		margin: 0 auto 64px;
 	}
 
@@ -857,7 +873,7 @@
 		width: clamp(406px, 39dvw, 39dvw);
 		height: calc(512px - 16dvw); /* 589px 289px */
         break-inside: avoid;
-        padding: 24px;
+        padding: 20px;
 		margin: auto;
 		background: var(--fourth-color-brighter);
         display: flex;
@@ -866,7 +882,7 @@
 
 	:global(.responsive-media-small-feature) {
 		width: clamp(128px, 14dvw, 256px);
-		border-radius: 16px;
+		border-radius: 14px;
 		height: 100%;
 		object-fit: cover;
 	}
@@ -878,7 +894,7 @@
 		}
 
 		:global(.responsive-media-small-feature) {
-			width: clamp(128px, 36dvw, 256px);
+			width: clamp(128px, 28dvw, 256px);
 			height: 100%;
 		}
 	}
@@ -894,4 +910,31 @@
 	:global(.ts-content p) {
 		line-height: 1.5;
 	}
+
+	/*
+	:global(.f-content) {
+		margin-top: 32px;
+	}
+
+	:global(.f-content-info) {
+		display: flex;
+		justify-content: center;
+	}
+
+	:global(.f-content-info ul) {
+		text-align: center;
+		list-style: none;
+
+	}
+
+	:global(.f-content-info h3) {
+		font-size: 2.25rem;
+		margin: 0;
+	}
+
+	:global(.f-content-info a) {
+		color: white;
+		text-decoration: none;
+	}
+		*/
 </style>

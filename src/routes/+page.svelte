@@ -34,8 +34,6 @@
 
     let features1Visible = $state(false);
     let features2Visible = $state(false);
-
-    let propertiesVisible = $state(false);
 </script>
 
 <section class="first-section" aria-labelledby="hero-heading">
@@ -91,3 +89,19 @@
         </div>
     </div>
 </section>
+<!--
+<footer>
+    <div class="f-content">
+		<div class="f-content-info">
+            <div>
+			    <h3>Properties</h3>
+			    <ul>
+			    	{#each properties as property, i (property.name)}
+    		    		<li><a href={`/p/${property.property}`}>{property.name}</a></li>
+                    {/each}
+			    </ul>
+            </div>
+		</div>
+	</div>
+</footer>
+-->

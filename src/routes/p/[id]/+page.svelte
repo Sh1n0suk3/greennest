@@ -6,12 +6,13 @@
     import { AOS } from 'svelte-animate-on-scroll';
 
     // import EstateCard from '../../EstateCardSmall.svelte';
-    import ViewButton from '../../ViewButtonFull.svelte';
+    import ViewButtonFull from '../../ViewButtonFull.svelte';
+    import ViewButton from '../../ViewButton.svelte';
 
     import * as consts from '$lib/constants';
 
-    /** 
-     * @type {import('./$types').PageProps} */
+    import { screenWidth } from '$lib/screenWidth.js';
+
     let { data } = $props(); 
 
     let borderDebug = $state(true);
@@ -20,18 +21,35 @@
     let previousImage = $state("");
     let intervalId = 0;
 
+    // Totally Gay Ma Image Gallery Navigation System
+    let currentIndex = $state(0);
+    let touchStartX = $state(0);
+    let touchEndX = $state(0);
+    let isSwiping = $state(false);
+    let swipeOffset = $state(0);
+    let galleryContainer = $state(null);
+
     $effect(() => { 
         currentImage = data.property.src;
 
-        intervalId = setInterval(() => {
-            const availableImage = imageList.filter((img) => img !== previousImage);
-            const randomImage = availableImage[Math.floor(Math.random() * availableImage.length)];
-			selectImage(randomImage, false);
-	    }, 2500);
+        if ($screenWidth > 768) {
+            intervalId = setInterval(() => {
+                const availableImage = imageList.filter((img) => img !== previousImage);
+                const randomImage = availableImage[Math.floor(Math.random() * availableImage.length)];
+                selectImage(randomImage, false);
+            }, 2500);
+        }
 
         return () => {
 			clearInterval(intervalId);
 		};
+    });
+
+    $effect(() => {
+        const index = imageList.indexOf(currentImage);
+        if (index !== -1) {
+            currentIndex = index;
+        }
     });
 
     function selectImage(img, clearTimer = true) {
@@ -40,6 +58,60 @@
         }
         previousImage = currentImage;
         currentImage = img;
+    }
+
+    function goToSlide(index) {
+        let newIndex;
+        if (index < 0) {
+            newIndex = imageList.length - 1;
+        } else if (index >= imageList.length) {
+            newIndex = 0;
+        } else {
+            newIndex = index;
+        }
+        currentIndex = newIndex;
+        currentImage = imageList[newIndex];
+        clearInterval(intervalId);
+    }
+
+    function goToPrevious() {
+        goToSlide(currentIndex - 1);
+    }
+
+    function goToNext() {
+        goToSlide(currentIndex + 1);
+    }
+    function handleTouchStart(e) {
+        touchStartX = e.touches[0].clientX;
+        touchEndX = e.touches[0].clientX;
+        isSwiping = true;
+        swipeOffset = 0;
+    }
+
+    function handleTouchMove(e) {
+        if (!isSwiping) return;
+        touchEndX = e.touches[0].clientX;
+        swipeOffset = touchEndX - touchStartX;
+    }
+
+    function handleTouchEnd() {
+        if (!isSwiping) return;
+        isSwiping = false;
+        
+        const swipeThreshold = 50;
+        const diff = touchEndX - touchStartX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                goToPrevious();
+            } else {
+                goToNext();
+            }
+        }
+        
+        swipeOffset = 0;
+        touchStartX = 0;
+        touchEndX = 0;
     }
 
     let imageList = $derived( 
@@ -74,6 +146,45 @@
 
 {#if isLoaded}
 <section class="estate-page" aria-labelledby="property-heading">
+    {#if $screenWidth <= 1232}
+        <div 
+            class="mobile-gallery-container"
+            bind:this={galleryContainer}
+            ontouchstart={handleTouchStart}
+            ontouchmove={handleTouchMove}
+            ontouchend={handleTouchEnd}
+            role="region"
+            aria-label="Property image gallery">
+            <button class="gallery-nav gallery-nav-left" onclick={goToPrevious} aria-label="Previous image">
+                <img src="/svg/arrow-left.svg" alt="View Previous">
+            </button>
+
+            <div 
+                class="mobile-gallery-track"
+                style="transform: translateX({swipeOffset}px)">
+                {#key currentImage}
+                    <img class="mobile-gallery-image" src={currentImage} alt={data.property.alt} transition:fade={{ duration: 250 }}/>
+                {/key}
+            </div>
+
+            <button class="gallery-nav gallery-nav-right" onclick={goToNext} aria-label="Next image">
+                <img src="/svg/arrow-right.svg" alt="View Next">
+            </button>
+
+            <div class="gallery-bullets" role="tablist" aria-label="Image navigation">
+                {#each imageList as img, i (img)}
+                    <button 
+                        class="gallery-bullet" 
+                        class:active={currentIndex === i}
+                        onclick={() => goToSlide(i)}
+                        role="tab"
+                        aria-selected={currentIndex === i}
+                        aria-label="Go to image {i + 1}">
+                    </button>
+                {/each}
+            </div>
+        </div>
+    {:else}
     <h2 id="property-heading" in:fly={{ y: 35, duration: 1250, delay: 100 }}>Property Details</h2>
     <article class="estate-content">
         <div class="estate-content-left neumorphism" in:fly={{ y: 35, duration: 1250, delay: 200}} role="region" aria-label="Property image gallery">
@@ -84,10 +195,13 @@
                     {/key}
                 </div>
                 <div class="small-media-container">
-                    {#each imageList as img, i}
-                        {#key img}
-                            <img class="small-media small-media-{i + 1}" src={img} alt="Thumbnail view" onclick={() => selectImage(img)} class:selected-media={currentImage === img}/>
-                        {/key}
+                    {#each imageList as img, i (img)}
+                        <button 
+                            class="small-media-button"
+                            onclick={() => selectImage(img)}
+                            aria-label="View image {i + 1}">
+                            <img class="small-media small-media-{i + 1}" src={img} alt="Thumbnail view {i + 1}" class:selected-media={currentImage === img}/>
+                        </button>
                     {/each}
                 </div>
             </div>
@@ -109,17 +223,30 @@
                     </ul>
                 </div>
                 
-                <p class="property-price">Price: {data.property.price}</p>
+                <p class="property-price">{data.property.price}</p>
             </div>
             <div class="button-container">
-                <ViewButton text="Purchase" href="/vid/rr.mp4"/>
-                <ViewButton text="Contact Sales" href="/vid/rr.mp4" />
+                <ViewButtonFull text="Purchase" href="/vid/rr.mp4"/>
+                <ViewButtonFull text="Contact Sales" href="/vid/rr.mp4" />
             </div>
         </div>
     </article>
+    {/if}
     <AOS animate="fade-up" ease="ease-out-cubic" delay={100} duration={1250} distance="35px">
     <article class="estate-content-information neumorphism">
-        <h3 class="estate-content-information-header">Information</h3>
+        <h2 class="estate-content-information-header">Description</h2>
+        {#if $screenWidth <= 1232}
+            <div class="property-features">
+                <p>Includes</p>
+                <ul>
+                    <li>{data.property.features1}</li>
+                    <li>{data.property.features2}</li>
+                </ul>                    <ul>
+                    <li>{data.property.features3}</li>
+                    <li>{data.property.features4}</li>
+                </ul>
+         </div>
+        {/if}
         <p>{@html data.property.information}</p>
     </article>
     </AOS>
@@ -148,6 +275,18 @@
     </aside>
     -->
 </section>
+{/if}
+{#if $screenWidth <= 1232}
+        <footer class="estate-content-mobile">
+            <header class="caption-inline">
+                <h3 class="caption">{data.property.name}</h3>
+                <p class="caption-price">{data.property.price}</p>
+            </header>
+            <nav class="button-container-mobile">
+                <ViewButton text="Purchase" href="/vid/rr.mp4"/>
+                <ViewButton text="Contact Sales" href="/vid/rr.mp4" />
+            </nav>
+        </footer>
 {/if}
 
 <style>
@@ -223,13 +362,17 @@
     }
 
     .property-features {
-        padding: 0 16px;
+        padding: 14px 16px 8px;
         border-radius: 16px;
         border: 3px solid var(--primary-color);
         width: fit-content;
         line-height: 1.4;
         margin-bottom: 16px;
         font-size: 1.25rem;
+    }
+
+    .property-features p {
+        margin-top: 0;
     }
 
     .property-features ul {
@@ -256,7 +399,7 @@
     }
     */
 
-    @media (width > 768px) {
+    @media (width > 1232px) {
         .property-price {
             margin-bottom: 32px !important;
         }
@@ -304,16 +447,24 @@
         margin-top: 16px;
     }
 
-    .small-media {
+    .small-media-button {
         width: 24.2%;
+        height: 100%;
+        padding: 0;
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+
+    .small-media {
+        width: 100%;
         height: 100%;
         border-radius: 16px;
         cursor: pointer;
-        bottom: 0;
     }
 
     .selected-media {
-        width: calc(24.2% - 8px);
+        width: calc(100% - 8px);
         height: calc(100% - 8px);
         border: 4px solid var(--primary-color);
     }
@@ -364,6 +515,7 @@
         }
     }
 
+    /*
     @media (width < 1232px) {
         .estate-content {
             flex-direction: column-reverse;
@@ -428,8 +580,9 @@
             width: 85%;
         }
     }
+    */
 
-    @media (width < 768px) {
+    @media (width < 1232px) {
         .mamm-stuff-grid {
             width: 100%;
         }
@@ -454,6 +607,179 @@
 
         #property-heading {
             padding: 0 0 32px;
+        }
+
+        .property-features {
+            font-size: 1.5rem;
+        }
+    }
+
+    .estate-content-mobile {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+		background-color: var(--fourth-color-brighter);
+        color: var(--primary-color) !important;
+        font-size: 24px;
+		padding: 12px 0 16px;
+		color: white;
+		z-index: 9998;
+		width: 100%;
+		height: auto;
+        border-top-left-radius: 14px;
+        border-top-right-radius: 14px;
+        border-top: 2px solid var(--primary-color-transparent-light);
+    }
+
+    .button-container-mobile {
+        margin-top: 0px;
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .caption-inline {
+        padding: 8px;
+    }
+
+    @media (width < 1232px) {
+        .full-media {
+            display: block;
+            position: absolute;
+            margin-top: 64px;
+		    width: 100%;
+    	    height: 50vh;
+		    object-fit: cover;
+		    background-size: cover;
+		    background-repeat: no-repeat;
+		    animation: revealImage 1500ms ease-in;
+            border-radius: 0;
+        }
+
+        .estate-content-information {
+            margin-top: 0;
+        }
+
+        .property-features {
+            margin: 24px 24px 0;
+        }
+    }
+
+    .mobile-gallery-container {
+        position: relative;
+        width: 100%;
+        height: 50vh;
+        margin-top: 32px;
+        overflow: hidden;
+        touch-action: pan-y pinch-zoom;
+    }
+
+    .mobile-gallery-track {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transition: transform 0.15s ease-out;
+    }
+
+    .mobile-gallery-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 0;
+    }
+
+    .gallery-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        background-color: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(4px);
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        transition: background-color 0.2s ease, transform 0.2s ease;
+        color: var(--primary-color, #333);
+    }
+
+    .gallery-nav:hover {
+        background-color: rgba(255, 255, 255, 1);
+        transform: translateY(-50%) scale(1.05);
+    }
+
+    .gallery-nav:active {
+        transform: translateY(-50%) scale(0.95);
+    }
+
+    .gallery-nav-left {
+        left: 16px;
+    }
+
+    .gallery-nav-right {
+        right: 16px;
+    }
+
+    .gallery-nav img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .gallery-bullets {
+        position: absolute;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 10;
+        padding: 8px 12px;
+        background-color: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(4px);
+        border-radius: 16px;
+    }
+
+    .gallery-bullet {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        background-color: rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        padding: 0;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .gallery-bullet:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .gallery-bullet.active {
+        background-color: rgba(255, 255, 255, 1);
+        transform: scale(1.2);
+    }
+
+    @media (width < 1232px) {
+        .estate-content-information {
+            margin-top: 32px;
+        }
+    }
+
+    @media (width < 768px) {
+        .mobile-gallery-container {
+            margin-top: 40px;
         }
     }
 </style>

@@ -1,7 +1,7 @@
 <script>
-    import ViewButton from './ViewButton.svelte';
+    // import ViewButton from './ViewButton.svelte';
     import ViewButtonFull from './ViewButtonFull.svelte';
-    import { onMount } from 'svelte';
+    // import { onMount } from 'svelte';
     
 	let { name, description, src, alt, price, href } = $props();
 	/*

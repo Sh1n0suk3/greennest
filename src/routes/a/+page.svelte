@@ -107,7 +107,7 @@
     }
 
     .text-justify {
-        text-align: justify;
+        text-align: start;
         margin: 0;
     }
 
@@ -181,7 +181,6 @@
 
     @media (width < 768px) {
         .gay-ma {
-            padding: 0 16px;
             width: 84dvw;
         }
 
