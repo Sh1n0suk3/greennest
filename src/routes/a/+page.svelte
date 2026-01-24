@@ -64,7 +64,7 @@
     <figcaption>
         <h3 class="caption-small">Ma, the developer</h3>
         <p class="caption-small"><em>Ma will be Ma. And always be Ma.</em></p>
-        <p class="caption-small">This website was a Certified Ma Moment™ to create (I mean it took forever to build this very Ma site). Learn Svelte, design layout, write code, see elements look disproportionate, enter the <strong>CSS nightmare</strong>, refine, write some Ma stuff, and finally... publish. Awwww! If it looks broken, it's not. It's just very <em>Ma</em> (but might be fixed.)</p>
+        <p class="caption-small">This website was a Certified Ma Moment™ to create (I mean it <s>took</s> has taken forever to build this very Ma site). Learn Svelte, design layout, write code, see elements look disproportionate, enter the <strong>CSS nightmare</strong>, refine, write some Ma stuff, and finally... publish. Awwww! If it looks broken, it's not. It's just very <em>Ma</em> (but might be fixed.)</p>
         <p class="caption-small">Built with <a href="https://svelte.dev" target="_blank" rel="noopener noreferrer">Svelte</a>.</p>
     </figcaption>
   </figure>
@@ -98,7 +98,7 @@
 
     .gay-ma {
         width: 85%;
-        padding: 12px 24px;
+        padding: 12px 16px;
         margin: 24px auto;
         border-radius: 16px;
         background: var(--fourth-color-brighter);
@@ -108,7 +108,7 @@
 
     .text-justify {
         text-align: start;
-        margin: 0;
+        margin: 12px 8px;
     }
 
     .section-heading {
@@ -142,7 +142,7 @@
         width: 85%;
         height: fit-content;
         break-inside: avoid;
-        padding: 24px;
+        padding: 16px;
         margin: 24px auto;
         background: var(--fourth-color-brighter);
         border-radius: 16px;
@@ -177,6 +177,10 @@
         width: 100%;
         height: 100%;
         border-radius: 16px;
+    }
+
+    .caption-small {
+        padding-right: 16px !important;
     }
 
     @media (width < 768px) {
