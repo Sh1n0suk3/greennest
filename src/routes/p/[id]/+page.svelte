@@ -283,8 +283,8 @@
                 <p class="caption-price">{data.property.price}</p>
             </header>
             <nav class="button-container-mobile">
-                <ViewButton text="Purchase" href="/vid/rr.mp4"/>
-                <ViewButton text="Contact Sales" href="/vid/rr.mp4" />
+                <ViewButton text="Purchase" href="https://notma.org/vid/rr.mp4"/>
+                <ViewButton text="Contact Sales" href="https://notma.org/vid/rr.mp4" />
             </nav>
         </footer>
 {/if}
