@@ -32,7 +32,7 @@
 	<p class="caption"><em>{description}</em></p>
     <div class="button-container">
             <ViewButtonFull text="View Details" {href} />
-            <ViewButtonFull text="Contact Sales" href="/vid/rr.mp4" />
+            <ViewButtonFull text="Contact Sales" href="https://notma.org/vid/rr.mp4" />
     </div>
 </div>
 
