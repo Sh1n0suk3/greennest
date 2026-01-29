@@ -638,17 +638,34 @@
     }
 
     .button-container-mobile {
-        margin-top: 0px;
+        margin: 0 auto 4px;
         display: flex;
-        width: 100%;
+        width: 96%;
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        gap: 12px;
+        gap: 8px;
     }
 
     .caption-inline {
-        padding: 0px 8px;
+        padding: 0 0 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 92%;
+        margin: 0 auto;
+    }
+
+    h3.caption {
+        padding: 0 !important;
+        margin: 0 auto;
+        margin: 0;
+    }
+
+    .caption-price {
+        padding: 0 !important;
+        margin: 0 auto;
+        margin: 0;
     }
 
     @media (width < 1312px) {
