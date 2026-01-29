@@ -677,7 +677,7 @@
     .mobile-gallery-container {
         position: relative;
         width: 100%;
-        height: 70vh;
+        height: 60vh;
         margin-top: 32px;
         overflow: hidden;
         touch-action: pan-y pinch-zoom;
