@@ -5,6 +5,7 @@
     import { onMount } from 'svelte';
 
     import { AOS } from 'svelte-animate-on-scroll';
+    import { screenWidth } from '$lib/screenWidth.js';
 
     import EstateCard from './EstateCard.svelte';
     // import ViewButton from './ViewButton.svelte';
@@ -40,12 +41,27 @@
     <img src="img/ecosmarta_cinematic_composited.webp" alt="a house" class="bg-image"/>
     <div class="fs-content-right">
         <hgroup>
+            {#if $screenWidth <= 832}
+            <AOS animate="fade-up" ease="ease-out-cubic" delay={50} duration={1000} distance="30px">
+                <h1 id="hero-heading">Close to</h1>
+            </AOS>
+            <AOS animate="fade-up" ease="ease-out-cubic" delay={50} duration={1000} distance="30px">
+                <h1 id="hero-heading">the City,</h1>
+            </AOS>
+            <AOS animate="fade-up" ease="ease-out-cubic" delay={150} duration={1000} distance="30px">
+                <h1>Closer to</h1>
+            </AOS>
+            <AOS animate="fade-up" ease="ease-out-cubic" delay={150} duration={1000} distance="30px">
+                <h1>Nature</h1>
+            </AOS>
+            {:else}
             <AOS animate="fade-up" ease="ease-out-cubic" delay={50} duration={1000} distance="30px">
                 <h1 id="hero-heading">Close to the City,</h1>
             </AOS>
             <AOS animate="fade-up" ease="ease-out-cubic" delay={150} duration={1000} distance="30px">
                 <h1>Closer to Nature</h1>
             </AOS>
+            {/if}
             <AOS animate="fade-up" ease="ease-out-cubic" delay={250} duration={1000} distance="30px">
                 <div class="hero-buttons">
                     <ViewButtonBorder text="Properties" href="/#properties" />

@@ -29,4 +29,10 @@
       box-shadow: none;
       color: white;
   }
+
+  @media (width < 1312px) {
+			.view-button {
+        padding: clamp(0.5rem, 14px, 0.75rem) clamp(0.75rem, 1.5dvw, 0.75rem);
+		}
+	}
 </style>

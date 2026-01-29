@@ -278,13 +278,13 @@
 		letter-spacing: -1px;
 	}
 
-	/*
+	
 	@media (width < 768px) {
 			:root {
-				font-size: 12px;
+				font-size: 14px;
 		}
 	}
-		*/
+
 
 	header {
 		position: fixed;
@@ -457,7 +457,7 @@
 
 	@media (width < 768px) {
 		:global(.fs-content-right) {
-			font-size: 2rem;
+			font-size: 2.5rem;
 		}
 
 		:global(.fs-content-right .hero-buttons) {
@@ -465,13 +465,14 @@
 		}
 	}
 
+	
 	@media (width < 576px) {
 		:global(.fs-content-right) {
-			font-size: 1.75rem;
+			font-size: 2.25rem;
 		}
 
 		:global(.fs-content-right .hero-buttons) {
-			margin-top: 84px;
+			margin-top: 64px;
 		}
 
 		:global(.first-section::before) {
@@ -484,15 +485,17 @@
 		}
 	}
 
+	
 	@media (width < 480px) {
 		:global(.fs-content-right) {
-			font-size: 1.45rem;
+			font-size: 2.15rem;
 		}
 
 		:global(.fs-content-right .hero-buttons) {
 			margin-top: 84px;
 		}
 	}
+	
 
 	:global(.fs-content-right p) {
 		opacity: 0.8;

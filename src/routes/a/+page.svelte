@@ -55,7 +55,7 @@
         </li>
     </ol>
     <p class="contact-info">
-        Inquiries regarding our upcoming projects should be directed to <strong><a href="mailto:sales@notma.org">sales@notma.org</a></strong>.
+        Inquiries regarding our projects should be directed to <strong><a href="mailto:me@notma.org">me@notma.org</a></strong>.
     </p>
   </article>
  <AOS animate="fade-up" ease="ease-out-cubic" delay={100} duration={1250} distance="35px">
@@ -71,8 +71,8 @@
   <figure class="gay-ma-stuff-item-small super-gay-ma-stuff-item-small neumorphism">
     <img loading="lazy" class="gay-responsive-media" alt="Best CSS developer award" src="/img/bestcssdev.webp">
     <figcaption>
-        <h3 class="caption-small">As always, the <s>worst</s> best CSS developer award goes to Ma</h3>
-        <p class="caption-small"><em>It's a Certified Ma CSS™. Please don't look at it, I swear.</em></p>
+        <h3 class="gay-caption">As always, the world's <s>worst</s> best CSS developer award goes to Ma</h3>
+        <p class="gay-caption"><em>It's a Certified Ma CSS™. Please don't look at the code, it might tramatizes you—I swear.</em></p>
     </figcaption>
   </figure>
   </AOS>
@@ -179,8 +179,14 @@
         border-radius: 16px;
     }
 
-    .caption-small {
-        padding-right: 16px !important;
+    .gay-caption {
+        font-size: 1.5rem;
+        margin: 8px 0 !important;
+    }
+
+    h3.gay-caption {
+        font-size: 2.25rem;
+        line-height: 1;
     }
 
     @media (width < 768px) {

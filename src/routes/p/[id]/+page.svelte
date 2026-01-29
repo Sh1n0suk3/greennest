@@ -81,6 +81,7 @@
     function goToNext() {
         goToSlide(currentIndex + 1);
     }
+
     function handleTouchStart(e) {
         touchStartX = e.touches[0].clientX;
         touchEndX = e.touches[0].clientX;
@@ -91,7 +92,7 @@
     function handleTouchMove(e) {
         if (!isSwiping) return;
         touchEndX = e.touches[0].clientX;
-        swipeOffset = touchEndX - touchStartX;
+        // swipeOffset = touchEndX - touchStartX;
     }
 
     function handleTouchEnd() {
@@ -146,7 +147,7 @@
 
 {#if isLoaded}
 <section class="estate-page" aria-labelledby="property-heading">
-    {#if $screenWidth <= 1232}
+    {#if $screenWidth <= 1312}
         <div 
             class="mobile-gallery-container"
             bind:this={galleryContainer}
@@ -223,7 +224,7 @@
                     </ul>
                 </div>
                 
-                <p class="property-price">{data.property.price}</p>
+                <p class="property-price">{data.property.fullPrice || data.property.price}</p>
             </div>
             <div class="button-container">
                 <ViewButtonFull text="Purchase" href="/vid/rr.mp4"/>
@@ -276,7 +277,7 @@
     -->
 </section>
 {/if}
-{#if $screenWidth <= 1232}
+{#if $screenWidth <= 1312}
         <footer class="estate-content-mobile">
             <header class="caption-inline">
                 <h3 class="caption">{data.property.name}</h3>
@@ -399,9 +400,9 @@
     }
     */
 
-    @media (width > 1232px) {
+    @media (width > 1312px) {
         .property-price {
-            margin-bottom: 32px !important;
+            margin-bottom: 16px !important;
         }
     }
 
@@ -412,7 +413,9 @@
         justify-content: flex-start;
         align-items: center;
         flex-direction: column;
-        margin: 18px 24px;
+        margin: 18px 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 
     img {
@@ -445,10 +448,11 @@
         display: flex;
         gap: 8px;
         margin-top: 16px;
+        box-sizing: border-box;
     }
 
     .small-media-button {
-        width: 24.2%;
+        flex: 1;
         height: 100%;
         padding: 0;
         border: none;
@@ -504,7 +508,7 @@
         width: 80%;
     }
 
-    @media (width < 1440px) {
+    @media (width < 1576px) {
         .mamm-stuff-grid {
             flex-direction: column;
             align-items: stretch;
@@ -512,6 +516,7 @@
 
         .property-features {
             font-size: 1rem;
+            line-height: 1;
         }
     }
 
@@ -582,7 +587,7 @@
     }
     */
 
-    @media (width < 1232px) {
+    @media (width < 1312px) {
         .mamm-stuff-grid {
             width: 100%;
         }
@@ -643,16 +648,16 @@
     }
 
     .caption-inline {
-        padding: 8px;
+        padding: 0px 8px;
     }
 
-    @media (width < 1232px) {
+    @media (width < 1312px) {
         .full-media {
             display: block;
             position: absolute;
             margin-top: 64px;
 		    width: 100%;
-    	    height: 50vh;
+    	    height: 60vh;
 		    object-fit: cover;
 		    background-size: cover;
 		    background-repeat: no-repeat;
@@ -672,7 +677,7 @@
     .mobile-gallery-container {
         position: relative;
         width: 100%;
-        height: 50vh;
+        height: 70vh;
         margin-top: 32px;
         overflow: hidden;
         touch-action: pan-y pinch-zoom;
@@ -725,11 +730,11 @@
     }
 
     .gallery-nav-left {
-        left: 16px;
+        left: 24px;
     }
 
     .gallery-nav-right {
-        right: 16px;
+        right: 24px;
     }
 
     .gallery-nav img {
@@ -771,7 +776,7 @@
         transform: scale(1.2);
     }
 
-    @media (width < 1232px) {
+    @media (width < 1312px) {
         .estate-content-information {
             margin-top: 32px;
         }

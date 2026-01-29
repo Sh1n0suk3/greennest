@@ -8,9 +8,8 @@
   .view-button {
       color: var(--primary-color);
       border: none;
-      padding: clamp(0.5rem, 1rem, 1rem) clamp(5.5rem, 6dvw, 7rem);
+      padding: clamp(0.5rem, 14px, 1rem) clamp(0.75rem, 1.5dvw, 1rem);
       width: 47.5%;
-      
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -31,4 +30,10 @@
       box-shadow: none;
       color: white;
   }
+
+  @media (width < 1312px) {
+		.view-button {
+            padding: clamp(0.5rem, 14px, 0.75rem) clamp(0.75rem, 1.5dvw, 0.75rem);
+		}
+	}
 </style>
