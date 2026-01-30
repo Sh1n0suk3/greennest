@@ -2,7 +2,7 @@
   import { fly } from 'svelte/transition';
   import { onMount } from 'svelte';
 
-  import { AOS } from 'svelte-animate-on-scroll';
+  // import { AOS } from 'svelte-animate-on-scroll';
 
   let isLoaded = $state(false); 
     onMount(() => {
@@ -58,6 +58,7 @@
         Inquiries regarding our projects should be directed to <strong><a href="mailto:me@notma.org">me@notma.org</a></strong>.
     </p>
   </article>
+<!--
  <AOS animate="fade-up" ease="ease-out-cubic" delay={100} duration={1250} distance="35px">
   <figure class="gay-ma-stuff-item-small neumorphism">
     <img loading="lazy" class="gay-responsive-media-small" alt="Ma, the developer" src="/img/ma.webp">
@@ -76,6 +77,7 @@
     </figcaption>
   </figure>
   </AOS>
+-->
 
 
 </section>
