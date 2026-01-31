@@ -880,6 +880,12 @@
 		object-fit: cover;
 		filter: blur(84px) brightness(200%) saturate(125%);
 		position: absolute;
+		transition: opacity 200ms ease-in;
+	}
+
+	:global(.ma-stuff-item-small-feature:hover .responsive-media-small-feature) {
+		opacity: 0;
+		transition: opacity 200ms ease-in;
 	}
 
 	@media (width < 1200px) {

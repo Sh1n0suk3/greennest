@@ -2,17 +2,20 @@
   import { fly } from 'svelte/transition';
   import { onMount } from 'svelte';
 
-  // import { AOS } from 'svelte-animate-on-scroll';
+  import { AOS } from 'svelte-animate-on-scroll';
 
   let isLoaded = $state(false); 
     onMount(() => {
         isLoaded = true;
     });
+
+  let gayMa = $state(false);
 </script>
 
 {#if isLoaded}
 <section class="ma" aria-labelledby="about-heading">
-  <h2 class="heading" id="about-heading" in:fly={{ y: 35, duration: 1500, delay: 100 }}>About</h2>
+    <!-- Hidden easter egg Ma -->
+  <a href="#gay-ma" class="hidden-gay-ma" onclick={() => gayMa = true}><h2 id="about-heading" class="heading" in:fly={{ y: 35, duration: 1500, delay: 100 }}>About</h2></a>
   <article class="gay-ma neumorphism" in:fly={{ y: 35, duration: 1500, delay: 300 }}>
     <p class="text-justify">
         At <a href="/">GreenNest</a>, we aren't just developers. We bridge the gap between urban necessity and environmental responsibility. We believe a home is more than a building; it is a sanctuary that respects both your modern lifestyle and the natural world around us, built with a commitment to <strong>pragmatic sustainability</strong>.
@@ -58,9 +61,9 @@
         Inquiries regarding our projects should be directed to <strong><a href="mailto:me@notma.org">me@notma.org</a></strong>.
     </p>
   </article>
-<!--
+  {#if gayMa}
  <AOS animate="fade-up" ease="ease-out-cubic" delay={100} duration={1250} distance="35px">
-  <figure class="gay-ma-stuff-item-small neumorphism">
+  <figure class="gay-ma-stuff-item-small neumorphism" id="gay-ma">
     <img loading="lazy" class="gay-responsive-media-small" alt="Ma, the developer" src="/img/ma.webp">
     <figcaption>
         <h3 class="caption-small">Ma, the developer</h3>
@@ -77,7 +80,7 @@
     </figcaption>
   </figure>
   </AOS>
--->
+  {/if}
 
 
 </section>
@@ -94,8 +97,13 @@
     .heading {
         font-size: 4rem;
         padding: 0 24px;
-        margin: 64px auto 32px;
+        margin: 42px auto 32px;
         width: 85%;
+    }
+
+    .hidden-gay-ma {
+        color: var(--first-color);
+        text-decoration: none;
     }
 
     .gay-ma {

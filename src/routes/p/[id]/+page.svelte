@@ -627,7 +627,7 @@
 		background-color: var(--fourth-color-brighter);
         color: var(--primary-color) !important;
         font-size: 24px;
-		padding: 12px 0 16px;
+		padding: 8px 0 12px;
 		color: white;
 		z-index: 9998;
 		width: 100%;
@@ -640,7 +640,7 @@
     .button-container-mobile {
         margin: 0 auto 4px;
         display: flex;
-        width: 96%;
+        width: 96.5%;
         flex-direction: row;
         align-items: center;
         justify-content: center;
@@ -648,11 +648,11 @@
     }
 
     .caption-inline {
-        padding: 0 0 12px;
+        padding: 0 0 8px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 92%;
+        width: 94%;
         margin: 0 auto;
     }
 
@@ -801,7 +801,7 @@
 
     @media (width < 768px) {
         .mobile-gallery-container {
-            margin-top: 40px;
+            margin-top: 36px;
         }
     }
 </style>

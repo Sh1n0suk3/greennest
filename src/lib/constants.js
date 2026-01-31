@@ -17,7 +17,7 @@ export const ec1 = {
   src: "/img/ecosmarta_cinematic2_composited.webp",
   alt: "A 3D Model representing Ma house (disaster)",
   price: "4m฿",
-  fullPrice: "4 million Baht"
+  fullPrice: "4 million Baht",
 };
 
 export const ec2 = {
