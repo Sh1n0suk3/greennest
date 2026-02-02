@@ -99,7 +99,7 @@
         if (!isSwiping) return;
         isSwiping = false;
         
-        const swipeThreshold = 200;
+        const swipeThreshold = 100;
         const diff = touchEndX - touchStartX;
         
         if (Math.abs(diff) > swipeThreshold) {
